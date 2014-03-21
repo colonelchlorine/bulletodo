@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src="./todo.js"></script>
+    <link rel="stylesheet" href="./todo.css">
+  </head>
+  <body ng-app="myApp">
+    <h2>Todo</h2>
+    <script type="text/ng-template"  id="tree_item_renderer.html">
+        <span class="todo-name" ng-click="flipEdit(data)" ng-show="data.edit === false">{{data.name}}</span>
+        <input type="text" value="{{data.name}}" ng-keydown="editSave(data, $event)" ng-blur="editSave(data, $event, true)" ng-show="data.edit === true" />
+        <button ng-click="add(data)">+</button>
+        <div style="display: inline-block;" ng-show="data.nodes.length > 0">
+            <button ng-click="delete(data)">-</button>
+            <button ng-click="nodeHide(data, true)">&and;</button>
+            <button ng-click="nodeHide(data, false)">&or;</button>
+        </div>
+        <ul ng-show="data.nodeHide === false">
+            <li ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></li>
+        </ul>
+    </script>
+
+    <ul ng-app="Application" ng-controller="TreeController">
+        <li ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></li>
+        <li><input type="text" ng-keydown="addTodo(tree, $event)" placeholder="add new bullet here" /></li>
+    </ul>
+
+
+  </body>
+</html>
