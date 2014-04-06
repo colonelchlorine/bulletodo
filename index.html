@@ -13,19 +13,21 @@
         <button ng-click="add(data)">+</button>
         <div style="display: inline-block;" ng-show="data.nodes.length > 0">
             <button ng-click="delete(data)">-</button>
-            <button ng-click="nodeHide(data, true)">&and;</button>
-            <button ng-click="nodeHide(data, false)">&or;</button>
+            <button ng-click="hide(data, true)">&and;</button>
+            <button ng-click="hide(data, false)">&or;</button>
         </div>
-        <ul ng-show="data.nodeHide === false">
+        <ul ng-show="data.hide === false">
             <li ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></li>
         </ul>
     </script>
 
-    <ul ng-app="Application" ng-controller="TreeController">
-        <li ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></li>
+    <ul ng-app="Application" ng-controller="TreeController" ng-init="init()">
+        <li ng-repeat="data in tree track by $index" ng-include="'tree_item_renderer.html'"></li>
         <li><input type="text" ng-keydown="addTodo(tree, $event)" placeholder="add new bullet here" /></li>
     </ul>
 
+    <br/>
 
+    <small><a href="#" onclick="window.localStorage.clear(); location.reload();">Clear all</a></small>
   </body>
 </html>
