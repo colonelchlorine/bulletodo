@@ -1,4 +1,5 @@
-.done-true {
-  text-decoration: line-through;
-  color: grey;
+input, input:focus {
+	border: 0;
+	padding: 0px;
+	outline: 0;
 }

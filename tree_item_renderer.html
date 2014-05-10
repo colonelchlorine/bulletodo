@@ -1,0 +1,11 @@
+<!--<span class="todo-name" ng-click="flipEdit(data)" ng-show="data.edit === false">{{data.name}}</span>-->
+<input type="text" value="{{data.name}}" ng-keydown="editSave(data, $event)" ng-blur="editSave(data, $event, true)" />
+<button ng-click="add(data)">+</button>
+<div style="display: inline-block;" ng-show="data.nodes.length > 0">
+    <button ng-click="delete(data)">-</button>
+    <button ng-click="hide(data, true)">&and;</button>
+    <button ng-click="hide(data, false)">&or;</button>
+</div>
+<ul ng-show="data.hide === false">
+    <li ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></li>
+</ul>

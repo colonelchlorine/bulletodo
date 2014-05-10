@@ -26,7 +26,7 @@ angular.module("myApp", []).service('uuid4', function() {
     $scope.add = function(data) {
         var post = data.nodes.length + 1;
         var newName = data.name + '-' + post;
-        data.nodes.push({name: newName, nodes: [], done:false, edit: false, hide: false, guid: uuid4.generate()});
+        data.nodes.push({name: newName, nodes: [], done:false, hide: false, guid: uuid4.generate()});
         $scope.save();
     };
 
@@ -37,7 +37,7 @@ angular.module("myApp", []).service('uuid4', function() {
 
     $scope.editSave = function (data, $event, isBlurred) {
         //Enter or blurred
-        if (data.edit === true && ($event.which == 13 || isBlurred)) {
+        if ($event.which == 13 || isBlurred) {
             data.name = $event.target.value;
             this.flipEdit(data);
         }
@@ -52,7 +52,7 @@ angular.module("myApp", []).service('uuid4', function() {
     $scope.addTodo = function(tree, $event) {
         //Enter
         if ($event.which == 13) {
-            tree.push({name:$event.target.value, nodes: [], done:false, edit: false, hide: false, guid: uuid4.generate()});
+            tree.push({name:$event.target.value, nodes: [], done:false, hide: false, guid: uuid4.generate()});
             $scope.save();
             $event.target.value = "";
 
